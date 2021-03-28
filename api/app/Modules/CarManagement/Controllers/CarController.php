@@ -19,10 +19,11 @@ class CarController extends ApiBaseController
     public function index()
     {
         try {
-            return $this->responseSuccess('', $this->carService->all());
+            $data = $this->carService->getAllCars();
         } catch (\Exception $e) {
             return $this->responseError($e->getMessage());
         }
+        return $this->responseSuccess('', $data);
     }
 
     public function store(StoreCarRequest $request)
@@ -51,7 +52,7 @@ class CarController extends ApiBaseController
         } catch (\Exception $e) {
             return $this->responseError($e->getMessage());
         }
-        return $this->responseSuccess('Editado com sucesso', [$request->all()]);
+        return $this->responseSuccess('Editado com sucesso');
     }
 
     public function destroy($id)
@@ -66,9 +67,10 @@ class CarController extends ApiBaseController
     public function getBrands()
     {
         try {
-            return $this->responseSuccess('', $this->carService->all(['id','brand']));
+            $data = $this->carService->getAllCars(['id','brand']);
         } catch (\Exception $e) {
             return $this->responseError($e->getMessage());
         }
+         return $this->responseSuccess('',$data);
     }
 }

@@ -43,4 +43,7 @@ class CarService extends CarRepository
         }
         return $car;
     }
+    public function getAllCars($columns =['*']){
+        return $this->all($columns);
+    }
 }
